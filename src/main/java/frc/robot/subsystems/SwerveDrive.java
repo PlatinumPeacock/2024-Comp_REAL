@@ -115,7 +115,7 @@ public class SwerveDrive extends SubsystemBase {
         else {
             x1 = driver.getRawAxis(Constants.ControllerConstants.LEFT_X_AXIS);
             y1 = driver.getRawAxis(Constants.ControllerConstants.LEFT_Y_AXIS);
-            x2 = driver.getRawAxis(Constants.ControllerConstants.RIGHT_X_AXIS);
+            x2 = -driver.getRawAxis(Constants.ControllerConstants.RIGHT_X_AXIS);
         }
 
         if ((!adjustToTapeButton && !adjustToApriltagRightButton && !adjustToApriltagLeftButton) || x2 == 1 || x2 ==-1) {
