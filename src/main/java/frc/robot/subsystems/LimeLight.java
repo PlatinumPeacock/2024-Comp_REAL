@@ -18,6 +18,11 @@ public class LimeLight extends SubsystemBase{
     public static double ta; //area of target
     public static double tv; //whether limelight has a target
     public static boolean hasTarget; //whether limelight has a target
+    XboxController driver = RobotContainer.driverController;
+    public static double angleToGoalDegrees;
+    public static double angleToGoalRadians;
+    public static double tagID;
+    double distanceFromLimelightToGoalInches;
 
     /** Creates a new LimeLight. */
     public LimeLight() {
@@ -40,14 +45,14 @@ public class LimeLight extends SubsystemBase{
       }
 
     public void adjustToTarget(int pipeline) {
-        XboxController driver = RobotContainer.driverController;
+        
         //switch between pipelines. 0 = reflective tape, 1 = apriltag
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
 
         updateLimeLightTracking();
 
         if (hasTarget) {
-            double tagID = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0);
+            tagID = identifyTag();
             
             //offset shelf tags
             if (tagID == 4 || tagID == 5) {
@@ -69,6 +74,37 @@ public class LimeLight extends SubsystemBase{
         }
     }
 
+    public void estimateDistance() {
+        updateLimeLightTracking();
+
+        if (hasTarget) {
+            angleToGoalDegrees = Constants.LimeLightConstants.MOUNT_ANGLE_DEGREES + ty;
+            angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
+            //calculate distance
+            distanceFromLimelightToGoalInches = (findTagHeight() - Constants.LimeLightConstants.LENS_HEIGHT_INCHES) / Math.tan(angleToGoalRadians);
+        }
+
+    }
+
+    public double identifyTag() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tid").getDouble(0);
+    }
+
+    public double findTagHeight() {
+        tagID = identifyTag();
+
+        if (tagID == 1 || tagID == 2 || tagID == 9 || tagID == 10)
+            return Constants.LimeLightConstants.SOURCE_HEIGHT;
+
+        else if (tagID == 3 || tagID == 4 || tagID == 7 || tagID == 8)
+            return Constants.LimeLightConstants.SPEAKER_HEIGHT;
+
+        else if (tagID == 5 || tagID == 6)
+            return Constants.LimeLightConstants.AMP_HEIGHT;
+
+        else
+            return Constants.LimeLightConstants.STAGE_HEIGHT;
+    }
 
     public double getRotation() {
         return rotation;
