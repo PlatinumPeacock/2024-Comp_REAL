@@ -1,17 +1,20 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Elevator;
+import frc.robot.Constants;
+import frc.robot.subsystems.Intake;
 
-public class ElevSetHeight extends Command {
-    Elevator elevator;
-    double heightPoint;
+public class IntakeNote extends Command{
+    Intake in;
+    double speed;
+    int direction;
 
-  /** Creates a new Extend. */
-  public ElevSetHeight(Elevator e, int h) {
-    elevator = e;
-    heightPoint = h;
-    addRequirements(elevator);
+  /** Creates a new Intake. */
+  public IntakeNote(Intake i, double s, int d) {
+    in = i;
+    speed = s;
+    direction = d;
+    addRequirements(in);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -22,20 +25,13 @@ public class ElevSetHeight extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (elevator.getElevatorPosition() > (heightPoint + 15000))
-        {elevator.extend(0.6, -1);
-      }
-    else if (elevator.getElevatorPosition() < (heightPoint - 15000)) 
-        {elevator.extend(0.6, 1);
-       }
-    else 
-        elevator.stop();    
+    in.intake(speed, direction);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    elevator.stop();
+    in.stop();
   }
 
   // Returns true when the command should end.

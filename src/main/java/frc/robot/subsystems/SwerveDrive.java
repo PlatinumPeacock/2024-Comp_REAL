@@ -113,9 +113,9 @@ public class SwerveDrive extends SubsystemBase {
             }
         }
         else {
-            x1 = driver.getRawAxis(Constants.ControllerConstants.LEFT_X_AXIS);
-            y1 = driver.getRawAxis(Constants.ControllerConstants.LEFT_Y_AXIS);
-            x2 = -driver.getRawAxis(Constants.ControllerConstants.RIGHT_X_AXIS);
+            x1 = driver.getRawAxis(Constants.Controller.LEFT_X_AXIS);
+            y1 = driver.getRawAxis(Constants.Controller.LEFT_Y_AXIS);
+            x2 = -driver.getRawAxis(Constants.Controller.RIGHT_X_AXIS);
         }
 
         if ((!adjustToTapeButton && !adjustToApriltagRightButton && !adjustToApriltagLeftButton) || x2 == 1 || x2 ==-1) {
@@ -131,7 +131,7 @@ public class SwerveDrive extends SubsystemBase {
             }
 
        
-        double r = Math.sqrt((Constants.DriveConstants.L * Constants.DriveConstants.L) + (Constants.DriveConstants.W * Constants.DriveConstants.W));
+        double r = Math.sqrt((Constants.Drive.L * Constants.Drive.L) + (Constants.Drive.W * Constants.Drive.W));
         //y1 *= -1;
         //x2 *= -1;
 
@@ -141,10 +141,10 @@ public class SwerveDrive extends SubsystemBase {
         x1 = -y1 * Math.sin(theta) + x1 * Math.cos(theta);
         y1 = temp;
 
-        double a = x1 - x2 * (Constants.DriveConstants.L / r);
-        double b = x1 + x2 * (Constants.DriveConstants.L / r);
-        double c = y1 - x2 * (Constants.DriveConstants.W / r);
-        double d = y1 + x2 * (Constants.DriveConstants.W / r);
+        double a = x1 - x2 * (Constants.Drive.L / r);
+        double b = x1 + x2 * (Constants.Drive.L / r);
+        double c = y1 - x2 * (Constants.Drive.W / r);
+        double d = y1 + x2 * (Constants.Drive.W / r);
 
         frontRightSpeed = Math.sqrt ((a * a) + (c * c));
         backLeftSpeed = Math.sqrt ((a * a) + (d * d));
@@ -164,7 +164,7 @@ public class SwerveDrive extends SubsystemBase {
             if (rotation == 0)
                 frontRightSpeed = 0;
             else
-                frontRightSpeed = -Constants.LimeLightConstants.AUTO_DRIVE_SPEED;
+                frontRightSpeed = -Constants.LimeLight.AUTO_DRIVE_SPEED;
 
             
             frontRightAngle = rotation;
@@ -211,10 +211,10 @@ public class SwerveDrive extends SubsystemBase {
     }
 
     public void driveForward() {
-        frontRight.drive (-Constants.DriveConstants.AUTON_SPEED, 0);
-        frontLeft.drive (-Constants.DriveConstants.AUTON_SPEED, 0);
-        backRight.drive (-Constants.DriveConstants.AUTON_SPEED, 0);
-        backLeft.drive (-Constants.DriveConstants.AUTON_SPEED, 0);
+        frontRight.drive (-Constants.Drive.AUTON_SPEED, 0);
+        frontLeft.drive (-Constants.Drive.AUTON_SPEED, 0);
+        backRight.drive (-Constants.Drive.AUTON_SPEED, 0);
+        backLeft.drive (-Constants.Drive.AUTON_SPEED, 0);
     }
 
     public void hold45() {

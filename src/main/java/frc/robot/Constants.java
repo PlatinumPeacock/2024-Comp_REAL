@@ -2,7 +2,7 @@ package frc.robot;
 
 public final class Constants {
 
-    public static final class ControllerConstants {
+    public static final class Controller {
         public static final int DRIVE_CONTROLLER = 0;
         public static final int OPERATOR_CONTROLLER = 1;
         public static final int LEFT_X_AXIS = 0;
@@ -10,35 +10,27 @@ public final class Constants {
         public static final int RIGHT_X_AXIS = 4;
     }
 
-    public static final class ElevatorConstants {
-        //port numbers for elevator motor
-        public static final int EXTEND_ELEVATOR = 18;
-        //elevator motor speeds
-        public static final double ROTATE_SPEED = 1;
-        public static final double EXTEND_SPEED = 0.25;
-        public static final int SHELF_HEIGHT = 618000;
-        public static final int MIDDLE_HEIGHT = 546000;
+    public static final class Intake {
+        //port numbers for intake
+        public static final int LEFT_INTAKE = 2; //CHANGE THIS IS NOT ACCURATE
+        public static final int RIGHT_INTAKE = 2;
+        public static final double INTAKE_SPEED = 1;
+        public static final double INTAKE_SPEED_REVERSE = 1;
+        public static final int DIRECTION = 1;
+        public static final int REVERSE_DIRECTION = -1;
     }
 
-    public static final class ClawConstants {
-        //port numbers for intake motors
-        public static final int LEFT_CLAW = 20;
-        public static final int RIGHT_CLAW = 21;
-        //claw motors speed
-        public static final double CLAW_SPEED = 0.4;
-        public static final double CLAW_SPEED_REVERSE = 1;
+    public static final class Shooter {
+        //port numbers for intake
+        public static final int UPPER_LEFT_SHOOTER = 2; //CHANGE THIS IS NOT ACCURATE
+        public static final int UPPER_RIGHT_SHOOTER = 2;
+        public static final int LOWER_LEFT_SHOOTER = 2;
+        public static final int LOWER_RIGHT_SHOOTER = 2;
     }
 
-    public static final class PneumaticsConstants {
-        //port numbers for pneumatics
-        public static final int PCM = 1;
-        public static final int CLAW_LEFT_SOLENOID = 0;
-        public static final int CLAW_RIGHT_SOLENOID = 1;
-        public static final int ELEVATOR_LEFT_SOLENOID = 2;
-        public static final int ELEVATOR_RIGHT_SOLENOID = 3;
-    }
 
-    public static final class LimeLightConstants {
+
+    public static final class LimeLight {
         public static final double AUTO_DRIVE_SPEED = 0.1;
         public static final double AUTO_ROTATE_SPEED = 0.1;
         public static final double DESIRED_TARGET_AREA = 0.9; // area of the target when the robot reaches desired distance
@@ -60,7 +52,7 @@ public final class Constants {
 
 
 
-    public static final class DriveConstants {
+    public static final class Drive {
 
         //swerve drive constants
         public static final double L = 0.43815; //length between axles // Distance between front and back wheels on robot

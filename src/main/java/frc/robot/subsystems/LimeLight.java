@@ -5,6 +5,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
+import frc.robot.Constants;
 
 
 public class LimeLight extends SubsystemBase{
@@ -22,7 +23,7 @@ public class LimeLight extends SubsystemBase{
     public static double angleToGoalDegrees;
     public static double angleToGoalRadians;
     public static double tagID;
-    double distanceFromLimelightToGoalInches;
+    public static double distanceFromLimelightToGoalInches;
 
     /** Creates a new LimeLight. */
     public LimeLight() {
@@ -78,10 +79,10 @@ public class LimeLight extends SubsystemBase{
         updateLimeLightTracking();
 
         if (hasTarget) {
-            angleToGoalDegrees = Constants.LimeLightConstants.MOUNT_ANGLE_DEGREES + ty;
+            angleToGoalDegrees = Constants.LimeLight.MOUNT_ANGLE_DEGREES + ty;
             angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
             //calculate distance
-            distanceFromLimelightToGoalInches = (findTagHeight() - Constants.LimeLightConstants.LENS_HEIGHT_INCHES) / Math.tan(angleToGoalRadians);
+            distanceFromLimelightToGoalInches = (findTagHeight() - Constants.LimeLight.LENS_HEIGHT_INCHES) / Math.tan(angleToGoalRadians);
         }
 
     }
@@ -94,16 +95,16 @@ public class LimeLight extends SubsystemBase{
         tagID = identifyTag();
 
         if (tagID == 1 || tagID == 2 || tagID == 9 || tagID == 10)
-            return Constants.LimeLightConstants.SOURCE_HEIGHT;
+            return Constants.LimeLight.SOURCE_HEIGHT;
 
         else if (tagID == 3 || tagID == 4 || tagID == 7 || tagID == 8)
-            return Constants.LimeLightConstants.SPEAKER_HEIGHT;
+            return Constants.LimeLight.SPEAKER_HEIGHT;
 
         else if (tagID == 5 || tagID == 6)
-            return Constants.LimeLightConstants.AMP_HEIGHT;
+            return Constants.LimeLight.AMP_HEIGHT;
 
         else
-            return Constants.LimeLightConstants.STAGE_HEIGHT;
+            return Constants.LimeLight.STAGE_HEIGHT;
     }
 
     public double getRotation() {

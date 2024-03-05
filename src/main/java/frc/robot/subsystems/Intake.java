@@ -6,14 +6,14 @@ import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-public class Claw extends SubsystemBase{
+public class Intake extends SubsystemBase{
     VictorSPX leftMotor;
     VictorSPX rightMotor;
   
     /** Creates a new Claw. */
-    public Claw() {
-        leftMotor = new VictorSPX(Constants.ClawConstants.LEFT_CLAW);
-        rightMotor = new VictorSPX(Constants.ClawConstants.RIGHT_CLAW);
+    public Intake() {
+        leftMotor = new VictorSPX(Constants.Intake.LEFT_INTAKE);
+        rightMotor = new VictorSPX(Constants.Intake.RIGHT_INTAKE);
       }
     
       @Override
