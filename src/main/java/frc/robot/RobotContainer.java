@@ -15,8 +15,11 @@ import frc.robot.subsystems.SwerveDrive;
 import frc.robot.subsystems.WheelDrive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Feeder;
 import frc.robot.commands.DriveWithJoysticksTrial;
 import frc.robot.commands.IntakeNote;
+import frc.robot.commands.Shoot;
+import frc.robot.commands.Feed;
 
 
 public class RobotContainer {
@@ -39,13 +42,19 @@ public class RobotContainer {
     //create swerve drive
     public static final SwerveDrive swerveDrive = new SwerveDrive (backRight, backLeft, frontRight, frontLeft, pigeon2, limeLight);
 
+    //create all subsystem objects
     private final Intake intake;
+    private final Feeder feeder;
+    private final Shooter shooter;
 
 
     //create all repeatCommands (because the whileHeld() method no longer exists)
-   
     private final RepeatCommand intakeNote;
     private final RepeatCommand intakeReverse;
+    private final RepeatCommand feed;
+    private final RepeatCommand feedReverse;
+    private final RepeatCommand shoot;
+    private final RepeatCommand shootReverse;
 
     
 
@@ -63,11 +72,24 @@ public class RobotContainer {
 
         //new intake object and all intake commands
         intake = new Intake();
-        intakeNote = new RepeatCommand(new IntakeNote(intake, Constants.Intake.INTAKE_SPEED, Constants.Intake.DIRECTION));
+        intakeNote = new RepeatCommand(new IntakeNote(intake, Constants.Intake.SPEED, Constants.Intake.DIRECTION));
         intakeNote.addRequirements(intake);
-        intakeReverse = new RepeatCommand(new IntakeNote(intake, Constants.Intake.INTAKE_SPEED_REVERSE, Constants.Intake.REVERSE_DIRECTION));
+        intakeReverse = new RepeatCommand(new IntakeNote(intake, Constants.Intake.SPEED_REVERSE, Constants.Intake.REVERSE_DIRECTION));
         intakeReverse.addRequirements(intake);
 
+        //new feeder object and all feeder commands
+        feeder = new Feeder();
+        feed = new RepeatCommand(new Feed(feeder, Constants.Feeder.SPEED, Constants.Feeder.DIRECTION));
+        feed.addRequirements(feeder);
+        feedReverse = new RepeatCommand(new Feed(feeder, Constants.Feeder.SPEED, Constants.Feeder.REVERSE_DIRECTION));
+        feedReverse.addRequirements(feeder);
+
+        //new shooter object and all shoot commands
+        shooter = new Shooter();
+        shoot = new RepeatCommand(new Shoot(shooter, Constants.Shooter.SPEED, Constants.Feeder.DIRECTION));
+        shoot.addRequirements(shooter);
+        shootReverse = new RepeatCommand(new Shoot(shooter, Constants.Shooter.SPEED, Constants.Feeder.REVERSE_DIRECTION));
+        shootReverse.addRequirements(shooter);
 
  
         //Add choice to smart dashboard

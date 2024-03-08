@@ -6,14 +6,12 @@ import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-public class Intake extends SubsystemBase{
-    VictorSPX leftMotor;
-    VictorSPX rightMotor;
+public class Feeder extends SubsystemBase{
+    VictorSPX motor;
   
-    /** Creates a new Intake. */
-    public Intake() {
-        leftMotor = new VictorSPX(Constants.Intake.LEFT_INTAKE);
-        rightMotor = new VictorSPX(Constants.Intake.RIGHT_INTAKE);
+    /** Creates a new Feeder. */
+    public Feeder() {
+        motor = new VictorSPX(Constants.Feeder.FEEDER);
       }
     
       @Override
@@ -23,17 +21,15 @@ public class Intake extends SubsystemBase{
     
       //one speed is positive, one is negative to spin motors in opposite directions
       //direction should be either -1 or 1 to set intake forward or reverse
-      public void intake(double speed, int direction)
+      public void feed(double speed, int direction)
       {
-        leftMotor.set(ControlMode.PercentOutput, speed * direction);
-        rightMotor.set(ControlMode.PercentOutput, -speed * direction);
+        motor.set(ControlMode.PercentOutput, speed * direction);
       }
     
     
       public void stop()
       {
-        leftMotor.set(ControlMode.PercentOutput, 0);
-        rightMotor.set(ControlMode.PercentOutput, 0);
+        motor.set(ControlMode.PercentOutput, 0);
       }
     
 }

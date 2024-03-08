@@ -12,7 +12,7 @@ public class Shooter extends SubsystemBase{
     VictorSPX lowerLeftMotor;
     VictorSPX lowerRightMotor;
   
-    /** Creates a new Claw. */
+    /** Creates a new Shooter. */
     public Shooter() {
         upperLeftMotor = new VictorSPX(Constants.Shooter.UPPER_LEFT_SHOOTER);
         upperRightMotor = new VictorSPX(Constants.Shooter.UPPER_RIGHT_SHOOTER);
