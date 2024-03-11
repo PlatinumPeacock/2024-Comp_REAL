@@ -16,10 +16,12 @@ import frc.robot.subsystems.WheelDrive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Feeder;
+import frc.robot.subsystems.Arm;
 import frc.robot.commands.DriveWithJoysticksTrial;
 import frc.robot.commands.IntakeNote;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Feed;
+import frc.robot.commands.Climb;
 
 
 public class RobotContainer {
@@ -46,6 +48,7 @@ public class RobotContainer {
     private final Intake intake;
     private final Feeder feeder;
     private final Shooter shooter;
+    private final Arm arm;
 
 
     //create all repeatCommands (because the whileHeld() method no longer exists)
@@ -55,6 +58,8 @@ public class RobotContainer {
     private final RepeatCommand feedReverse;
     private final RepeatCommand shoot;
     private final RepeatCommand shootReverse;
+    private final RepeatCommand climb;
+    private final RepeatCommand climbReverse;
 
     
 
@@ -81,15 +86,22 @@ public class RobotContainer {
         feeder = new Feeder();
         feed = new RepeatCommand(new Feed(feeder, Constants.Feeder.SPEED, Constants.Feeder.DIRECTION));
         feed.addRequirements(feeder);
-        feedReverse = new RepeatCommand(new Feed(feeder, Constants.Feeder.SPEED, Constants.Feeder.REVERSE_DIRECTION));
+        feedReverse = new RepeatCommand(new Feed(feeder, Constants.Feeder.SPEED_REVERSE, Constants.Feeder.REVERSE_DIRECTION));
         feedReverse.addRequirements(feeder);
 
         //new shooter object and all shoot commands
         shooter = new Shooter();
         shoot = new RepeatCommand(new Shoot(shooter, Constants.Shooter.SPEED, Constants.Feeder.DIRECTION));
         shoot.addRequirements(shooter);
-        shootReverse = new RepeatCommand(new Shoot(shooter, Constants.Shooter.SPEED, Constants.Feeder.REVERSE_DIRECTION));
+        shootReverse = new RepeatCommand(new Shoot(shooter, Constants.Shooter.SPEED_REVERSE, Constants.Feeder.REVERSE_DIRECTION));
         shootReverse.addRequirements(shooter);
+
+        //new arm object and all climb commands
+        arm = new Arm();
+        climb = new RepeatCommand(new Climb(arm, Constants.Arm.SPEED, Constants.Arm.DIRECTION));
+        climb.addRequirements(arm);
+        climbReverse = new RepeatCommand(new Climb(arm, Constants.Arm.SPEED_REVERSE, Constants.Arm.REVERSE_DIRECTION));
+        climbReverse.addRequirements(arm);
 
  
         //Add choice to smart dashboard

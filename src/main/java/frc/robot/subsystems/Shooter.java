@@ -25,7 +25,7 @@ public class Shooter extends SubsystemBase{
         // This method will be called once per scheduler run
       }
     
-      //one speed is positive, one is negative to spin motors in opposite directions
+      //left speeds are positive, right are negative to spin motors in opposite directions
       //direction should be either -1 or 1 to set intake forward or reverse
       public void shoot(double speed, int direction)
       {

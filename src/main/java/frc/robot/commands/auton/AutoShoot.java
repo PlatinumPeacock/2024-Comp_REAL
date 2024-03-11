@@ -3,31 +3,38 @@ package frc.robot.commands.auton;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
-import frc.robot.subsystems.SwerveDrive;
+import frc.robot.subsystems.Feeder;
+import frc.robot.subsystems.Shooter;
 
-public class AutonDrive extends Command{
-    SwerveDrive driveTrain;
+public class AutoShoot extends Command{
+    Feeder feeder;
+    Shooter shooter;
     double time;
     private boolean finish = false;
     Timer timer;
 
-    /** Creates a new AutonDrive. */
-    public AutonDrive(SwerveDrive dt, double t) {
-    driveTrain = dt;
-    addRequirements(driveTrain);
+    /** Creates a new AutoShoot. */
+    public AutoShoot(Feeder f, Shooter s, double t) {
+    feeder = f;
+    addRequirements(feeder);
+    shooter = s;
+    addRequirements(shooter);
     time = t;
     timer = new Timer();
     }
 
   // Called when the command is initially scheduled.
-  //"Some things are ugly, not me, you." - Meta 3-23-23
   @Override
   public void initialize() {
     timer.reset();
     timer.start();
     while(timer.get() < time)
     {
-        driveTrain.driveForward(Constants.Drive.AUTON_SPEED);
+        shooter.shoot(Constants.Shooter.SPEED, Constants.Shooter.DIRECTION);
+        if (timer.get() > 2)
+        {
+            feeder.feed(Constants.Feeder.SPEED, Constants.Feeder.DIRECTION);
+        }
     }
     finish = true;
   }
@@ -39,7 +46,8 @@ public class AutonDrive extends Command{
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    driveTrain.stop();
+    feeder.stop();
+    shooter.stop();
   }
 
   // Returns true when the command should end.

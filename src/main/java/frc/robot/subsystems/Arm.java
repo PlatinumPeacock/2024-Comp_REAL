@@ -6,12 +6,12 @@ import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-public class Feeder extends SubsystemBase{
+public class Arm extends SubsystemBase{
     VictorSPX motor;
   
-    /** Creates a new Feeder. */
-    public Feeder() {
-        motor = new VictorSPX(Constants.Feeder.FEEDER);
+    /** Creates a new Arm. */
+    public Arm() {
+        motor = new VictorSPX(Constants.Arm.MOTOR);
       }
     
       @Override
@@ -21,7 +21,7 @@ public class Feeder extends SubsystemBase{
     
       
       //direction should be either -1 or 1 to set intake forward or reverse
-      public void feed(double speed, int direction)
+      public void climb(double speed, int direction)
       {
         motor.set(ControlMode.PercentOutput, speed * direction);
       }

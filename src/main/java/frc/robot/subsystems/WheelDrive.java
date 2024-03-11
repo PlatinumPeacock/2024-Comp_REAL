@@ -1,23 +1,22 @@
 package frc.robot.subsystems;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 
 import com.ctre.phoenix.sensors.CANCoder;
-
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 
 public class WheelDrive {
-    private CANSparkMax angleMotor;
-    private CANSparkMax speedMotor;
+    private TalonFX angleMotor;
+    private TalonFX speedMotor;
     private CANCoder encoder;
     private PIDController pidController;
     
 
     public WheelDrive(int aM, int sM, int encoder) {
-        angleMotor = new CANSparkMax(aM, MotorType.kBrushless);
-        speedMotor = new CANSparkMax(sM, MotorType.kBrushless);
+        angleMotor = new TalonFX(aM);
+        speedMotor = new TalonFX(sM);
         this.encoder = new CANCoder(encoder);
         
         
@@ -31,7 +30,7 @@ public class WheelDrive {
 
     public void drive(double speed, double angle) {
         
-        speedMotor.set (speed);
+        speedMotor.set(TalonFXControlMode.PercentOutput, speed);
          
         
         double setpoint = angle;
@@ -41,7 +40,7 @@ public class WheelDrive {
         //double cmd = -1 * ((setpoint - encoder.getAbsolutePosition()) * kp);
         
        
-        angleMotor.set(MathUtil.clamp(cmd, -1, 1));
+        angleMotor.set(TalonFXControlMode.PercentOutput, MathUtil.clamp(cmd, -1, 1));
     /* 
         if (!pidController.atSetpoint()) {
             

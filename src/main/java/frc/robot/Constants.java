@@ -18,6 +18,8 @@ public final class Constants {
         public static final double SPEED_REVERSE = 1;
         public static final int DIRECTION = 1;
         public static final int REVERSE_DIRECTION = -1;
+
+        public static final double AUTON_SPEED = 1;
     }
 
     public static final class Feeder {
@@ -40,6 +42,13 @@ public final class Constants {
         public static final int REVERSE_DIRECTION = -1;
     }
 
+    public static final class Arm {
+        public static final int MOTOR = 2;
+        public static final double SPEED = 1;
+        public static final double SPEED_REVERSE = 1;
+        public static final int DIRECTION = 1;
+        public static final int REVERSE_DIRECTION = -1;
+    }
 
 
     public static final class LimeLight {
@@ -81,20 +90,20 @@ public final class Constants {
         */
 
         //motor and encoder ports
-        public static final int FRONT_LEFT_DRIVE = 10;
-        public static final int REAR_LEFT_DRIVE = 15;
-        public static final int FRONT_RIGHT_DRIVE = 13;
-        public static final int REAR_RIGHT_DRIVE = 14;
+        public static final int FRONT_LEFT_DRIVE = 58;
+        public static final int REAR_LEFT_DRIVE = 55;
+        public static final int FRONT_RIGHT_DRIVE = 59;
+        public static final int REAR_RIGHT_DRIVE = 56;
     
-        public static final int FRONT_LEFT_TURNING = 11;
-        public static final int REAR_LEFT_TURNING = 17;
-        public static final int FRONT_RIGHT_TURNING = 12;
-        public static final int REAR_RIGHT_TURNING = 16;
+        public static final int FRONT_LEFT_TURNING = 61;
+        public static final int REAR_LEFT_TURNING = 57;
+        public static final int FRONT_RIGHT_TURNING = 60;
+        public static final int REAR_RIGHT_TURNING = 54;
     
-        public static final int FRONT_LEFT_ENCODER = 5;
-        public static final int REAR_LEFT_ENCODER = 4;
-        public static final int FRONT_RIGHT_ENCODER = 3;
-        public static final int REAR_RIGHT_ENCODER = 6;
+        public static final int FRONT_LEFT_ENCODER = 53;
+        public static final int REAR_LEFT_ENCODER = 52;
+        public static final int FRONT_RIGHT_ENCODER = 50;
+        public static final int REAR_RIGHT_ENCODER = 51;
 
         public static final int PIGEON2 = 2;
     
@@ -105,6 +114,7 @@ public final class Constants {
 
         //auton driving
         public static final double AUTON_SPEED = 0.3;
+        public static final double AUTON_SPEED_INTAKE = 0.2;
         public static final double TIME = 4; //time robot drives forward in auton
     
       }

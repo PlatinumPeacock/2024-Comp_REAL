@@ -4,17 +4,21 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.SwerveDrive;
+import frc.robot.subsystems.Intake;
 
-public class AutonDrive extends Command{
+public class DriveIntake extends Command{
     SwerveDrive driveTrain;
+    Intake intake;
     double time;
     private boolean finish = false;
     Timer timer;
 
-    /** Creates a new AutonDrive. */
-    public AutonDrive(SwerveDrive dt, double t) {
+    /** Creates a new DriveIntake. */
+    public DriveIntake(SwerveDrive dt, Intake i, double t) {
     driveTrain = dt;
+    intake = i;
     addRequirements(driveTrain);
+    addRequirements(intake);
     time = t;
     timer = new Timer();
     }
@@ -27,7 +31,8 @@ public class AutonDrive extends Command{
     timer.start();
     while(timer.get() < time)
     {
-        driveTrain.driveForward(Constants.Drive.AUTON_SPEED);
+        intake.intake(Constants.Intake.AUTON_SPEED, Constants.Intake.DIRECTION);
+        driveTrain.driveForward(Constants.Drive.AUTON_SPEED_INTAKE);
     }
     finish = true;
   }
@@ -40,6 +45,7 @@ public class AutonDrive extends Command{
   @Override
   public void end(boolean interrupted) {
     driveTrain.stop();
+    intake.stop();
   }
 
   // Returns true when the command should end.

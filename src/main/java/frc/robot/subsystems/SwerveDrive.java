@@ -210,11 +210,11 @@ public class SwerveDrive extends SubsystemBase {
     
     }
 
-    public void driveForward() {
-        frontRight.drive (-Constants.Drive.AUTON_SPEED, 0);
-        frontLeft.drive (-Constants.Drive.AUTON_SPEED, 0);
-        backRight.drive (-Constants.Drive.AUTON_SPEED, 0);
-        backLeft.drive (-Constants.Drive.AUTON_SPEED, 0);
+    public void driveForward(double speed) {
+        frontRight.drive (-speed, 0);
+        frontLeft.drive (-speed, 0);
+        backRight.drive (-speed, 0);
+        backLeft.drive (-speed, 0);
     }
 
     public void hold45() {
