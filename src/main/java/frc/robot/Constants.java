@@ -107,10 +107,10 @@ public final class Constants {
 
         public static final int PIGEON2 = 2;
     
-        public static final double kFrontLeftAngleZero = 349.45;
-        public static final double kRearLeftAngleZero = 0;
-        public static final double kFrontRightAngleZero = 75.32;
-        public static final double kRearRightAngleZero = 270;
+        public static final double kFrontLeftAngleZero = -123.8;
+        public static final double kRearLeftAngleZero = -147.6;
+        public static final double kFrontRightAngleZero = -137;
+        public static final double kRearRightAngleZero = 48.1;
 
         //auton driving
         public static final double AUTON_SPEED = 0.3;
