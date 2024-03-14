@@ -115,9 +115,32 @@ public class RobotContainer {
 
 
         //intake buttons
-        Trigger intakeButton = operatorController.a();
+        Trigger intakeButton = operatorController.b();
         intakeButton.whileTrue(intakeNote);
 
+        Trigger intakeReverseButton = operatorController.y();
+        intakeReverseButton.whileTrue(intakeReverse);
+
+        //feeder buttons
+        Trigger feederButton = operatorController.a();
+        feederButton.whileTrue(feed);
+
+        Trigger feedReverseButton = operatorController.x();
+        feedReverseButton.whileTrue(feedReverse);
+
+        //shooter buttons
+        Trigger shootButton = operatorController.rightBumper();
+        shootButton.whileTrue(shoot);
+
+        Trigger shootReverseButton = operatorController.leftBumper();
+        shootReverseButton.whileTrue(shootReverse);
+
+        //climb buttons
+        Trigger climbButton = operatorController.povUp();
+        climbButton.whileTrue(climb);
+
+        Trigger climbReverseButton = operatorController.povDown();
+        climbReverseButton.whileTrue(climbReverse);
 
     }
 

@@ -12,8 +12,8 @@ public final class Constants {
 
     public static final class Intake {
         //port numbers for intake
-        public static final int LEFT_INTAKE = 2; //CHANGE THIS IS NOT ACCURATE
-        public static final int RIGHT_INTAKE = 2; 
+        public static final int LEFT_INTAKE = 5; 
+        public static final int RIGHT_INTAKE = 9; 
         public static final double SPEED = 1;
         public static final double SPEED_REVERSE = 1;
         public static final int DIRECTION = 1;
@@ -23,7 +23,7 @@ public final class Constants {
     }
 
     public static final class Feeder {
-        public static final int FEEDER = 2;
+        public static final int FEEDER = 18;
         public static final double SPEED = 1;
         public static final double SPEED_REVERSE = 1;
         public static final int DIRECTION = 1;
@@ -32,10 +32,10 @@ public final class Constants {
 
     public static final class Shooter {
         //port numbers for intake
-        public static final int UPPER_LEFT_SHOOTER = 2; //CHANGE THIS IS NOT ACCURATE
-        public static final int UPPER_RIGHT_SHOOTER = 2;
-        public static final int LOWER_LEFT_SHOOTER = 2;
-        public static final int LOWER_RIGHT_SHOOTER = 2;
+        public static final int UPPER_LEFT_SHOOTER = 15;
+        public static final int UPPER_RIGHT_SHOOTER = 19;
+        public static final int LOWER_LEFT_SHOOTER = 1;
+        public static final int LOWER_RIGHT_SHOOTER = 8;
         public static final double SPEED = 1;
         public static final double SPEED_REVERSE = 1;
         public static final int DIRECTION = 1;
